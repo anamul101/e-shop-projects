@@ -3,6 +3,8 @@ const router = express.Router();
 const Product = require("../model/product");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const { upload } = require("../multer");
+const ErrorHandler = require("../utils/ErrorHandler");
+const Shop = require("../model/shop");
 
 // create product
 router.post(
