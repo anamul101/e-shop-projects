@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { createProduct } from "../../redux/actions/product";
+// import { createProduct } from "../../redux/actions/product";
 import { categoriesData } from "../../static/data";
 import { toast } from "react-hot-toast";
 
 const CreateProduct = () => {
-  const { seller } = useSelector((state) => state.seller);
-  const { success, error } = useSelector((state) => state.products);
+//   const { seller } = useSelector((state) => state.seller);
+//   const { success, error } = useSelector((state) => state.products);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+//   const dispatch = useDispatch();
 
   const [images, setImages] = useState([]);
   const [name, setName] = useState("");
@@ -21,16 +21,16 @@ const CreateProduct = () => {
   const [discountPrice, setDiscountPrice] = useState();
   const [stock, setStock] = useState();
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-    }
-    if (success) {
-      toast.success("Product created successfully!");
-      navigate("/dashboard");
-      window.location.reload();
-    }
-  }, [dispatch, error, success]);
+//   useEffect(() => {
+//     if (error) {
+//       toast.error(error);
+//     }
+//     if (success) {
+//       toast.success("Product created successfully!");
+//       navigate("/dashboard");
+//       window.location.reload();
+//     }
+//   }, [dispatch, error, success]);
 
   const handleImageChange = (e) => {
     e.preventDefault();
@@ -56,8 +56,8 @@ const CreateProduct = () => {
     newForm.append("originalPrice", originalPrice);
     newForm.append("discountPrice", discountPrice);
     newForm.append("stock", stock);
-    newForm.append("shopId", seller._id);
-    dispatch(createProduct(newForm));
+    // newForm.append("shopId", seller._id);
+    // dispatch(createProduct(newForm));
   };
 
   return (
