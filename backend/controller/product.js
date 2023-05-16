@@ -5,7 +5,6 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 const Shop = require("../model/shop");
-const Product = require("../model/product");
 
 // create product
 router.post(
@@ -53,7 +52,7 @@ router.get(
         return next(new ErrorHandler(error, 400));
       }
     })
-  );
+);
 
 module.exports=router;
   
