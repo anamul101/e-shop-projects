@@ -4,19 +4,19 @@ import DashboardSideBar from '../../components/Shop/Layout/DashboardSideBar'
 import AllProducts from '../../components/Shop/AllProducts'
 
 const ShopAllProducts = () => {
-  return (
-    <div>
-        <DashboardHeader />
-        <div className="flex items-center justify-between w-full">
-            <div className="w-[80px] 800px:w-[330px]">
-              <DashboardSideBar active={3} />
+    return (
+        <div>
+            <DashboardHeader />
+            <div className="w-full justify-between flex">
+                <div className="w-[80px] 800px:w-[330px]  items-center  ">
+                    <DashboardSideBar active={3} />
+                </div>
+                <div className="w-full justify-between flex mt-8">
+                    <AllProducts />
+                </div>
             </div>
-            <div className="w-full justify-center flex">
-                <AllProducts/>
-            </div>
-          </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default ShopAllProducts;
