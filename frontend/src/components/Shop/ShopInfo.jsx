@@ -1,8 +1,9 @@
 import React from 'react'
-import { backend_url } from '../../server';
+import { backend_url, server } from '../../server';
 import { useSelector } from 'react-redux';
 import styles from "../../styles/styles";
 import { Link, useParams } from "react-router-dom";
+import axios from 'axios';
 
 const ShopInfo = ({isOwner}) => {
   // const [data,setData] = useState({});
@@ -11,7 +12,10 @@ const ShopInfo = ({isOwner}) => {
   //   const {id} = useParams();
   //   const dispatch = useDispatch();
   const logoutHandler=()=>{
-    
+      axios.get(`${server}/shop/logout`,{
+        withCredentials:true,
+      });
+      window.location.reload();
   }
   return (
     <>

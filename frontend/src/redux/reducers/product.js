@@ -33,17 +33,17 @@ export const productReducer = createReducer(initialState, {
   },
 
   // delete product of a shop
-//   deleteProductRequest: (state) => {
-//     state.isLoading = true;
-//   },
-//   deleteProductSuccess: (state, action) => {
-//     state.isLoading = false;
-//     state.message = action.payload;
-//   },
-//   deleteProductFailed: (state, action) => {
-//     state.isLoading = false;
-//     state.error = action.payload;
-//   },
+  deleteProductRequest: (state) => {
+    state.isLoading = true;
+  },
+  deleteProductSuccess: (state, action) => {
+    state.isLoading = false;
+    state.message = action.payload;
+  },
+  deleteProductFailed: (state, action) => {
+    state.isLoading = false;
+    state.error = action.payload;
+  },
 
   // get all products
 //   getAllProductsRequest: (state) => {

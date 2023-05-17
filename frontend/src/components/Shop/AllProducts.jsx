@@ -2,10 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getAllProductsShop } from "../../redux/actions/product";
-// import { deleteProduct } from "../../redux/actions/product";
+import { deleteProduct,deleteProductSuccess } from "../../redux/actions/product";
 import Loader from "../Layout/Loader";
 import { useEffect } from "react";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 
 const AllProducts = () => {
     const { products, isLoading } = useSelector((state) => state.products);
@@ -18,12 +19,17 @@ const AllProducts = () => {
         dispatch(getAllProductsShop(seller._id));
     }, [dispatch]);
     // const { name, _id, originalPrice, stock, sold_out } = products;
-    const handleDelete = () => {
-
+    const handleDelete = (id) => {
+        dispatch(deleteProduct(id))
+        window.location.reload();
+        toast.success("Your Products has been Successfull");
     }
     return (
         <>
-            <div className="lg:w-full  lg:mx-4">
+        {isLoading ? (
+            <Loader />
+          ) :(
+            <div className="w-full mx-4">
                 <div className="overflow-x-auto">
                     <table className="table table-compact w-full">
                         <thead>
@@ -55,7 +61,7 @@ const AllProducts = () => {
 
                                         </td>
                                         <td>
-                                            <button onClick={() => handleDelete(singleProduct._id)}>
+                                           <button onClick={() => handleDelete(singleProduct._id)}>
                                                 <AiOutlineDelete size={20} />
                                             </button>
                                         </td>
@@ -67,6 +73,7 @@ const AllProducts = () => {
                 </div>
             </div>
 
+          )}
         </>
     );
 };
