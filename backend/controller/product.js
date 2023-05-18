@@ -6,6 +6,7 @@ const { upload } = require("../multer");
 const ErrorHandler = require("../utils/ErrorHandler");
 const Shop = require("../model/shop");
 const { isSeller, isAuthenticated, isAdmin } = require("../middleware/auth");
+const fs = require("fs");
 
 // create product
 router.post(
@@ -63,18 +64,18 @@ router.delete(
     try {
       const productId = req.params.id;
 
-      // const productData = await Product.findById(productId);
+      const productData = await Product.findById(productId);
 
-      // productData.images.forEach((imageUrl) => {
-      //   const filename = imageUrl;
-      //   const filePath = `uploads/${filename}`;
+      productData.images.forEach((imageUrl) => {
+        const filename = imageUrl;
+        const filePath = `uploads/${filename}`;
 
-      //   fs.unlink(filePath, (err) => {
-      //     if (err) {
-      //       console.log(err);
-      //     }
-      //   });
-      // });
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      });
 
       const product = await Product.findByIdAndDelete(productId);
 

@@ -23,11 +23,6 @@ const CreateEvent = () => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-    const today = new Date().toISOString().slice(0, 10);
-
-    const minEndDate = startDate ? new Date(startDate.getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10) : today;
-
-
     const handleStartDateChange = (e) => {
         const startDate = new Date(e.target.value);
         const minEndDate = new Date(startDate.getTime() + 3 * 24 * 60 * 60 * 1000);
@@ -40,6 +35,11 @@ const CreateEvent = () => {
         const endDate = new Date(e.target.value);
         setEndDate(endDate);
     };
+
+    const today = new Date().toISOString().slice(0, 10);
+
+    const minEndDate = startDate ? new Date(startDate.getTime() + 3 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10) : today;
+
 
 
     useEffect(() => {

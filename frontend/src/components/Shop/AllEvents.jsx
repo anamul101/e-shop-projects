@@ -1,26 +1,26 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProductsShop } from "../../redux/actions/product";
-import { deleteProduct} from "../../redux/actions/product";
+import { getAllEventsShop } from "../../redux/actions/event";
+import { deleteEvent} from "../../redux/actions/event";
 import Loader from "../Layout/Loader";
 import { useEffect } from "react";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { toast } from "react-hot-toast";
 
 const AllEvents = () => {
-    const { products, isLoading } = useSelector((state) => state.products);
+    const { events, isLoading } = useSelector((state) => state.events);
     const { seller } = useSelector((state) => state.seller);
 
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getAllProductsShop(seller._id));
+        dispatch(getAllEventsShop(seller._id));
     }, [dispatch]);
     // const { name, _id, originalPrice, stock, sold_out } = products;
     const handleDelete = (id) => {
-        dispatch(deleteProduct(id))
+        dispatch(deleteEvent(id))
         window.location.reload();
         toast.success("Your Products has been Successfull");
     }
@@ -45,15 +45,15 @@ const AllEvents = () => {
                         </thead>
                         <tbody>
                             {
-                                products && products.map((singleProduct) =>
+                                events && events.map((singleevents) =>
                                     <tr>
-                                        <th>{singleProduct._id}</th>
-                                        <td>{singleProduct.name}</td>
-                                        <td>{singleProduct.originalPrice}</td>
-                                        <td>{singleProduct.stock}</td>
-                                        <td>{singleProduct.sold_out}</td>
+                                        <th>{singleevents._id}</th>
+                                        <td>{singleevents.name}</td>
+                                        <td>{singleevents.originalPrice}</td>
+                                        <td>{singleevents.stock}</td>
+                                        <td>{singleevents.sold_out}</td>
                                         <td>
-                                            <Link to={`/product/${singleProduct._id}`}>
+                                            <Link to={`/product/${singleevents._id}`}>
                                                 <button>
                                                     <AiOutlineEye size={20} />
                                                 </button>
@@ -61,7 +61,7 @@ const AllEvents = () => {
 
                                         </td>
                                         <td>
-                                           <button onClick={() => handleDelete(singleProduct._id)}>
+                                           <button onClick={() => handleDelete(singleevents._id)}>
                                                 <AiOutlineDelete size={20} />
                                             </button>
                                         </td>
