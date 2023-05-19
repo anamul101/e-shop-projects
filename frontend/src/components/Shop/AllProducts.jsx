@@ -18,7 +18,7 @@ const AllProducts = () => {
     useEffect(() => {
         dispatch(getAllProductsShop(seller._id));
     }, [dispatch]);
-    // const { name, _id, originalPrice, stock, sold_out } = products;
+    
     const handleDelete = (id) => {
         dispatch(deleteProduct(id))
         window.location.reload();

@@ -7,7 +7,7 @@ import { loadSeller, loadUser } from './redux/actions/user';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './routes/ProtectedRoute';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
-import { ShopAllEvents, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage } from './routes/ShopRoutes';
+import { ShopAllCoupouns, ShopAllEvents, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage } from './routes/ShopRoutes';
 
 function App() {
   useEffect(()=>{
@@ -63,6 +63,11 @@ function App() {
         <Route path='/dashboard-events' element={
           <SellerProtectedRoute>
             <ShopAllEvents/>
+          </SellerProtectedRoute>
+        }/>
+        <Route path='/dashboard-coupouns' element={
+          <SellerProtectedRoute>
+            <ShopAllCoupouns/>
           </SellerProtectedRoute>
         }/>
         <Route path='/seller/activation/:activation_token' element={<SellerActivationPage/>}/>
