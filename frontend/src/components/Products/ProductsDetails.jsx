@@ -17,11 +17,11 @@ const ProductsDetails = ({ data }) => {
     const [select, setSelect] = useState(0);
     const navigate = useNavigate();
 
-    const {products}=useSelector((state)=>state.products);
-    const dispatch=useDispatch();
-    useEffect(()=>{
+    const { products } = useSelector((state) => state.products);
+    const dispatch = useDispatch();
+    useEffect(() => {
         dispatch(getAllProductsShop(data && data?.shop._id));
-    },[dispatch,data])
+    }, [dispatch, data])
 
     const incrementCount = () => {
         setCount(count + 1)
@@ -56,22 +56,22 @@ const ProductsDetails = ({ data }) => {
                                 <div className="w-full 800px:w-[50%]">
                                     <img src={`${backend_url}${data && data.images[select]}`} className="w-[80%]" alt="" />
                                     <div className="w-full flex">
-                                        <div className={`${select === 0 ? "border" : "null"} cursor-pointer`}>
-                                            <img
-                                                // src={data?.image_Url[0].url}
-                                                src={`${backend_url}${data.image && data.image[0]}`}
-                                                alt=""
-                                                className="h-[200px] overflow-hidden mr-3 mt-3"
-                                                onClick={() => setSelect(0)}
-                                            />
-                                        </div>
+                                        {data &&
+                                            data.images.map((i, index) => (
+                                                <div
+                                                    className={`${select === 0 ? "border" : "null"
+                                                        } cursor-pointer`}
+                                                >
+                                                    <img
+                                                        src={`${backend_url}${i}`}
+                                                        alt=""
+                                                        className="h-[200px] overflow-hidden mr-3 mt-3"
+                                                        onClick={() => setSelect(index)}
+                                                    />
+                                                </div>
+                                            ))}
                                         <div className={`${select === 1 ? "border" : "null"} cursor-pointer`}>
-                                            <img
-                                                src={`${backend_url}${data.image && data.image[0]}`}
-                                                alt=""
-                                                className="h-[200px] overflow-hidden mr-3 mt-3"
-                                                onClick={() => setSelect(1)}
-                                            />
+
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@ const ProductsDetails = ({ data }) => {
                         <br />
                         <br />
                         <div>
-                            <ProductDetailsInfo data={data} products={products}/>
+                            <ProductDetailsInfo data={data} products={products} />
                         </div>
                     </div>
                 ) : null
@@ -173,7 +173,7 @@ const ProductsDetails = ({ data }) => {
     );
 };
 
-const ProductDetailsInfo = ({ data ,products}) => {
+const ProductDetailsInfo = ({ data, products }) => {
     const [active, setActive] = useState(1);
     return (
         <div className="bg-[#f5f6fb] px-3 800px:px-10 py-2 rounded">
@@ -213,7 +213,7 @@ const ProductDetailsInfo = ({ data ,products}) => {
                 active === 1 ? (
                     <>
                         <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-                        {data.description}
+                            {data.description}
                         </p>
                     </>
                 ) : null
@@ -249,7 +249,7 @@ const ProductDetailsInfo = ({ data ,products}) => {
                         <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 800px:flex flex-col items-end">
                             <div className='text-left'>
                                 <h5 className='font-[600]'>
-                                    Joined on: <span className='front-[500]'>{data.shop?.createdAt?.slice(0,10)}</span>
+                                    Joined on: <span className='front-[500]'>{data.shop?.createdAt?.slice(0, 10)}</span>
                                 </h5>
                                 <h5 className='font-[600]'>
                                     Total Products: <span className='front-[500]'>{products && products.length}</span>

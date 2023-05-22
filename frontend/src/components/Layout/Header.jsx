@@ -15,7 +15,8 @@ import Cart from '../cart/Cart';
 import Wishlist from '../Wishlist/Wishlist';
 
 const Header = ({ activeHeading }) => {
-    const { isAuthenticated, user } = useSelector((state) => state.user)
+    const { isAuthenticated, user } = useSelector((state) => state.user);
+    const {products} = useSelector((state) => state.products);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchData, setSearchData] = useState(null);
     const [active, setActive] = useState(false);
@@ -23,12 +24,13 @@ const Header = ({ activeHeading }) => {
     const [openCart, setOpenCart] = useState(false);
     const [openWishlist, setOpenWishlist] = useState(false);
     const [open, setOpen] = useState(false);
+    console.log(products);
 
     const handleSearchChange = (e) => {
         const term = e.target.value;
         setSearchTerm(term);
 
-        const filteredProducts = productData.filter((product) =>
+        const filteredProducts = products && products.filter((product) =>
             product.name.toLowerCase().includes(term.toLowerCase())
         );
         setSearchData(filteredProducts);
@@ -76,7 +78,7 @@ const Header = ({ activeHeading }) => {
                                                 <Link to={`/product/${Product_name}`}>
                                                     <div className="w-full flex items-start-py-3">
                                                         <img
-                                                            src={i.image_Url[0].url}
+                                                            src={`${backend_url}${i.image[0]}`}
                                                             alt=""
                                                             className="w-[40px] h-[40px] mr-[10px]"
                                                         />
