@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { productData } from "../../static/data";
+// import { productData } from "../../static/data";
 import ProductCard from "../Route/ProductCard";
 import styles from "../../styles/styles";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const SuggestedProduct = ({ data }) => {
     const d =
     products && products.filter((i) => i.category === data.category);
     setProductData(d);
-  }, []);
+  }, [products,data.category]);
 
   return (
     <div>

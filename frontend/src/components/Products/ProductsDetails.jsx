@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from '../../styles/styles';
 import {
     AiFillHeart,
@@ -8,12 +8,20 @@ import {
     AiOutlineShoppingCart,
 } from "react-icons/ai";
 import { backend_url } from '../../server';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProductsShop } from '../../redux/actions/product';
 
 const ProductsDetails = ({ data }) => {
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(0);
     const navigate = useNavigate();
+
+    const {products}=useSelector((state)=>state.products);
+    const dispatch=useDispatch();
+    useEffect(()=>{
+        dispatch(getAllProductsShop(data && data?.shop._id));
+    },[dispatch,data])
 
     const incrementCount = () => {
         setCount(count + 1)
@@ -156,7 +164,7 @@ const ProductsDetails = ({ data }) => {
                         <br />
                         <br />
                         <div>
-                            <ProductDetailsInfo data={data} />
+                            <ProductDetailsInfo data={data} products={products}/>
                         </div>
                     </div>
                 ) : null
@@ -165,7 +173,7 @@ const ProductsDetails = ({ data }) => {
     );
 };
 
-const ProductDetailsInfo = ({ data }) => {
+const ProductDetailsInfo = ({ data ,products}) => {
     const [active, setActive] = useState(1);
     return (
         <div className="bg-[#f5f6fb] px-3 800px:px-10 py-2 rounded">
@@ -224,7 +232,7 @@ const ProductDetailsInfo = ({ data }) => {
                             <Link to={`/shop/preview/${data.shop._id}`}>
                                 <div className="flex items-center">
                                     <img
-                                        src={`${data.shop.shop_avatar.url}`}
+                                        src={`${backend_url}${data?.shop?.avatar}`}
                                         className="w-[50px] h-[50px] rounded-full"
                                         alt=""
                                     />
@@ -236,15 +244,15 @@ const ProductDetailsInfo = ({ data }) => {
                                     </div>
                                 </div>
                             </Link>
-                            <p className="pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis fugiat omnis vitae quia veniam ab, placeat saepe facilis quidem ullam voluptatibus deserunt deleniti ducimus dolores corrupti? Quas molestiae fuga odit libero, eligendi magnam nemo labore asperiores vel ad, debitis esse!</p>
+                            <p className="pt-2">{data.shop.description}</p>
                         </div>
                         <div className="w-full 800px:w-[50%] mt-5 800px:mt-0 800px:flex flex-col items-end">
                             <div className='text-left'>
                                 <h5 className='font-[600]'>
-                                    Joined on: <span className='front-[500]'>23 April,2023</span>
+                                    Joined on: <span className='front-[500]'>{data.shop?.createdAt?.slice(0,10)}</span>
                                 </h5>
                                 <h5 className='font-[600]'>
-                                    Total Products: <span className='front-[500]'>1343</span>
+                                    Total Products: <span className='front-[500]'>{products && products.length}</span>
                                 </h5>
                                 <h5 className='font-[600]'>
                                     Total Reviews: <span className='front-[500]'>300</span>

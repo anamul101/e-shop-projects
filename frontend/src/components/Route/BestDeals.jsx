@@ -7,8 +7,6 @@ import ProductCard from "./ProductCard";
 const BestDeals = () => {
   const [data, setData] = useState([]);
   const {products} = useSelector((state) => state.products);
-  console.log(products)
-  console.log(data)
 
   useEffect(() => {
     // const d = products && products.sort((a,b)=> b.total_sell-a.total_sell);

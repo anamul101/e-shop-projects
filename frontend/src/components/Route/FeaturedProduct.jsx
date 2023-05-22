@@ -6,7 +6,6 @@ import ProductCard from "./ProductCard";
 
 const FeaturedProduct = () => {
   const {products} = useSelector((state) => state.products);
-  console.log(products)
    
   return (
     <div>

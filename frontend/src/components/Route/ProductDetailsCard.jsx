@@ -12,7 +12,7 @@ import { backend_url } from '../../server';
 const ProductDetailsCard = ({ setOpen, data }) => {
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
-    const [select, setSelect] = useState(false);
+    // const [select, setSelect] = useState(false);
 
     const handleMessageSubmit = () => { }
     const addToCartHandler = () => {
@@ -68,7 +68,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                                                 Send Message <AiOutlineMessage className="ml-1" />
                                             </span>
                                         </div>
-                                        <h5 className="text-[16px] text-[red] mt-5">({data.total_sell}) Sold Out</h5>
+                                        <h5 className="text-[16px] text-[red] mt-5">({data.sold_out}) Sold Out</h5>
                                     </div>
                                     <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
                                         <h1 className={`${styles.productTitle} text-[20px]`}>
@@ -135,7 +135,6 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                         </div>
                     ) : null
                 }
-                ProductDetailsCard
             </div>
         </>
     );
