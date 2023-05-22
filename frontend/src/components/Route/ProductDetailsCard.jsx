@@ -7,6 +7,7 @@ import {
     AiOutlineMessage,
     AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { backend_url } from '../../server';
 
 const ProductDetailsCard = ({ setOpen, data }) => {
     const [count, setCount] = useState(1);
@@ -14,6 +15,9 @@ const ProductDetailsCard = ({ setOpen, data }) => {
     const [select, setSelect] = useState(false);
 
     const handleMessageSubmit = () => { }
+    const addToCartHandler = () => {
+        
+    }
 
     const decrementCount = () => {
         if (count > 1) {
@@ -24,6 +28,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
     const incrementCount = () => {
         setCount(count + 1);
     };
+
     return (
         <>
             <div className='bg-[#fff]'>
@@ -39,11 +44,11 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                                 <div className="block w-full 800px:flex">
                                     <div className="w-full 800px:w-[50%]">
                                         <img
-                                            src={data.image_Url[0].url}
+                                            src={`${backend_url}${data.images && data.images[0]}`}
                                             alt=""
                                         />
                                         <div className='flex'>
-                                            <img src={data.shop.shop_avatar.url} alt=""
+                                            <img src={`${backend_url}${data?.shop?.avatar}`} alt=""
                                                 className='w-[50px] h-[50px] rounded-full mr-2'
                                             />
                                             <div>
@@ -72,10 +77,10 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                                         <p>{data.description}</p>
                                         <div className="flex pt-3">
                                             <h4 className={`${styles.productDiscountPrice}`}>
-                                                {data.discount_price}$
+                                                {data.discountPrice}$
                                             </h4>
                                             <h3 className={`${styles.price}`}>
-                                                {data.price ? data.price + "$" : null}
+                                            {data.originalPrice ? data.originalPrice + "$" : null}
                                             </h3>
                                         </div>
                                         <div className="flex items-center mt-12 justify-between pr-3">
@@ -117,7 +122,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                                         </div>
                                         <div
                                             className={`${styles.button} mt-6 rounded-[4px] h-11 flex items-center`}
-                                            // onClick={() => addToCartHandler(data._id)}
+                                            onClick={() => addToCartHandler(data._id)}
                                         >
                                             <span className="text-[#fff] flex items-center">
                                                 Add to cart <AiOutlineShoppingCart className="ml-1" />

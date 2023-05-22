@@ -7,6 +7,7 @@ import {
     AiOutlineMessage,
     AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { backend_url } from '../../server';
 
 const ProductsDetails = ({ data }) => {
     const [count, setCount] = useState(1);
@@ -45,11 +46,12 @@ const ProductsDetails = ({ data }) => {
                         <div className="w-full py-5">
                             <div className="block w-full 800px:flex">
                                 <div className="w-full 800px:w-[50%]">
-                                    <img src={data.image_Url[select].url} className="w-[80%]" alt="" />
+                                    <img src={`${backend_url}${data && data.images[select]}`} className="w-[80%]" alt="" />
                                     <div className="w-full flex">
                                         <div className={`${select === 0 ? "border" : "null"} cursor-pointer`}>
                                             <img
-                                                src={data?.image_Url[0].url}
+                                                // src={data?.image_Url[0].url}
+                                                src={`${backend_url}${data.image && data.image[0]}`}
                                                 alt=""
                                                 className="h-[200px] overflow-hidden mr-3 mt-3"
                                                 onClick={() => setSelect(0)}
@@ -57,7 +59,7 @@ const ProductsDetails = ({ data }) => {
                                         </div>
                                         <div className={`${select === 1 ? "border" : "null"} cursor-pointer`}>
                                             <img
-                                                src={data?.image_Url[1].url}
+                                                src={`${backend_url}${data.image && data.image[0]}`}
                                                 alt=""
                                                 className="h-[200px] overflow-hidden mr-3 mt-3"
                                                 onClick={() => setSelect(1)}
@@ -70,10 +72,10 @@ const ProductsDetails = ({ data }) => {
                                     <p>{data.description}</p>
                                     <div className="flex pt-3">
                                         <h4 className={`${styles.productDiscountPrice}`}>
-                                            {data.discount_price}$
+                                            {data.discountPrice}$
                                         </h4>
                                         <h3 className={`${styles.price}`}>
-                                            {data.price ? data.price + "$" : null}
+                                            {data.originalPrice ? data.originalPrice + "$" : null}
                                         </h3>
                                     </div>
                                     <div className="flex items-center mt-12 justify-between pr-3">
@@ -123,7 +125,7 @@ const ProductsDetails = ({ data }) => {
                                         <div className="flex items-center pt-8">
                                             <Link to={`/shop/preview/${data?.shop._id}`}>
                                                 <img
-                                                    src={`${data.shop.shop_avatar.url}`}
+                                                    src={`${backend_url}${data?.shop?.avatar}`}
                                                     alt=""
                                                     className="w-[50px] h-[50px] rounded-full mr-2"
                                                 />
@@ -203,13 +205,7 @@ const ProductDetailsInfo = ({ data }) => {
                 active === 1 ? (
                     <>
                         <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-                            Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically
-                        </p>
-                        <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-                            Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically
-                        </p>
-                        <p className="py-2 text-[18px] leading-8 pb-10 whitespace-pre-line">
-                            Product details are a crucial part of any eCommerce website or online marketplace. These details help the potential customers to make an informed decision about the product they are interested in buying. A well-written product description can also be a powerful marketing tool that can help to increase sales.Product details typically
+                        {data.description}
                         </p>
                     </>
                 ) : null
