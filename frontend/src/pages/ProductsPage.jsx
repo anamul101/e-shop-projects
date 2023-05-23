@@ -4,29 +4,29 @@ import styles from "../styles/styles";
 import ProductCard from "../components/Route/ProductCard";
 import Footer from "../components/Layout/Footer";
 import { useSearchParams } from "react-router-dom";
-import { productData } from "../static/data";
-// import { useDispatch, useSelector } from "react-redux";
-// import { getAllProducts } from "../redux/actions/product";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../redux/actions/product";
+// import Loader from "../components/Layout/Loader";
 
 const ProductsPage = () => {
     const [searchParams] = useSearchParams();
     const categoryData = searchParams.get("category");
-    //   const {allProducts,isLoading} = useSelector((state) => state.products);
+      const {allProducts,isLoading} = useSelector((state) => state.products);
     const [data, setData] = useState([]);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (categoryData === null) {
-            const d = productData && productData.sort((a, b) => a.total_sell - b.total_sell);
+            const d = allProducts && allProducts.sort((a, b) => a.sold_out - b.sold_out);
             setData(d);
-            // dispatch(getAllProducts());
+            dispatch(getAllProducts());
         } else {
-            const d =
-                productData && productData.filter((i) => i.category === categoryData);
+            const d = allProducts && allProducts.filter((i) => i.category === categoryData);
             setData(d);
+            dispatch(getAllProducts());
         }
         //    window.scrollTo(0,0);
-    }, [categoryData]);
+    }, [categoryData,allProducts,dispatch]);
 
     return (
         <>
@@ -45,7 +45,7 @@ const ProductsPage = () => {
                             ) : null}
                         </div>
                         <Footer />
-                    </div>
+                    </div>      
         </>
     );
 };
