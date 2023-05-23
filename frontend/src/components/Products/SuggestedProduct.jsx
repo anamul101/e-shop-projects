@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
-// import { productData } from "../../static/data";
 import ProductCard from "../Route/ProductCard";
 import styles from "../../styles/styles";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../redux/actions/product";
+import { useSelector } from "react-redux";
 
 
 const SuggestedProduct = ({ data }) => {
   const {allProducts} = useSelector((state) => state.products);
   const [productData,setProductData] = useState([]);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const d =
     allProducts && allProducts.filter((i) => i.category === data.category);
     setProductData(d);
-    dispatch(getAllProducts());
-  }, [dispatch,allProducts,data.category]);
+  }, [allProducts,data.category]);
 
   return (
     <div>

@@ -21,7 +21,7 @@ const ProductsDetails = ({ data }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getAllProductsShop(data && data?.shop._id));
-    }, [dispatch, data])
+    }, [dispatch,data])
 
     const incrementCount = () => {
         setCount(count + 1)

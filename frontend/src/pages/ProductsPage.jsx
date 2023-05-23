@@ -4,8 +4,7 @@ import styles from "../styles/styles";
 import ProductCard from "../components/Route/ProductCard";
 import Footer from "../components/Layout/Footer";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../redux/actions/product";
+import { useSelector } from "react-redux";
 // import Loader from "../components/Layout/Loader";
 
 const ProductsPage = () => {
@@ -13,24 +12,21 @@ const ProductsPage = () => {
     const categoryData = searchParams.get("category");
       const {allProducts,isLoading} = useSelector((state) => state.products);
     const [data, setData] = useState([]);
-    const dispatch = useDispatch();
 
     useEffect(() => {
         if (categoryData === null) {
             const d = allProducts && allProducts.sort((a, b) => a.sold_out - b.sold_out);
             setData(d);
-            dispatch(getAllProducts());
         } else {
             const d = allProducts && allProducts.filter((i) => i.category === categoryData);
             setData(d);
-            dispatch(getAllProducts());
         }
         //    window.scrollTo(0,0);
-    }, [categoryData,allProducts,dispatch]);
+    }, [allProducts,categoryData]);
 
     return (
         <>
-                    <div>
+                <div>
                         <Header activeHeading={3} />
                         <br />
                         <br />
@@ -46,6 +42,7 @@ const ProductsPage = () => {
                         </div>
                         <Footer />
                     </div>      
+                    
         </>
     );
 };

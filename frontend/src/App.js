@@ -8,11 +8,15 @@ import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './routes/ProtectedRoute';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
 import { ShopAllCoupouns, ShopAllEvents, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage } from './routes/ShopRoutes';
+import { getAllEvents } from './redux/actions/event';
+import { getAllProducts } from './redux/actions/product';
 
 function App() {
   useEffect(()=>{
-    Store.dispatch(loadUser())
-    Store.dispatch(loadSeller())
+    Store.dispatch(loadUser());
+    Store.dispatch(loadSeller());
+    Store.dispatch(getAllProducts());
+    Store.dispatch(getAllEvents());
   },[])
   return (
     <>

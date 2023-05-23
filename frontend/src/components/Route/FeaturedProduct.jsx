@@ -1,16 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import styles from "../../styles/styles";
-// import { productData } from "../../static/data";
 import ProductCard from "./ProductCard";
-import { getAllProducts } from "../../redux/actions/product";
 
 const FeaturedProduct = () => {
   const {allProducts} = useSelector((state) => state.products);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getAllProducts());
-  }, [ dispatch]);
    
   return (
     <div>

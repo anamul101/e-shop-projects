@@ -9,11 +9,10 @@ import { RxCross1 } from "react-icons/rx";
 import { categoriesData, productData } from "../../static/data";
 import DropDown from './DropDown';
 import Navbar from './Navbar';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { backend_url } from '../../server';
 import Cart from '../cart/Cart';
 import Wishlist from '../Wishlist/Wishlist';
-import { getAllProducts } from '../../redux/actions/product';
 
 const Header = ({ activeHeading }) => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -25,11 +24,6 @@ const Header = ({ activeHeading }) => {
     const [openCart, setOpenCart] = useState(false);
     const [openWishlist, setOpenWishlist] = useState(false);
     const [open, setOpen] = useState(false);
-    const dispatch = useDispatch();
- 
-    useEffect(() => {
-        dispatch(getAllProducts());
-    }, [dispatch])
     
     const handleSearchChange = (e) => {
         const term = e.target.value;
