@@ -5,17 +5,20 @@ import ProductsDetails from '../components/Products/ProductsDetails';
 import { useParams } from 'react-router-dom';
 // import { productData } from '../static/data';
 import SuggestedProduct from '../components/Products/SuggestedProduct';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllProducts } from '../redux/actions/product';
 
 const ProductDetailsPage = () => {
-    const {products} = useSelector((state) => state.products);
+    const {allProducts} = useSelector((state) => state.products);
     const { name } = useParams();
     const [data, setData] = useState(null);
+    const dispatch = useDispatch();
     const productName = name.replace(/-/g, " ");
     useEffect(() => {
-        const data =products && products.find((i) => i.name === productName);
+        const data =allProducts && allProducts.find((i) => i.name === productName);
         setData(data)
-    }, [products,productName])
+        dispatch(getAllProducts());
+    }, [dispatch,allProducts,productName])
     return (
         <div>
             <Header />

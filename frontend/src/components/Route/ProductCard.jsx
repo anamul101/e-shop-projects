@@ -23,13 +23,6 @@ const ProductCard = ({ data, isEvent }) => {
                         className="w-full h-[170px] object-contain"
                     />
                 </Link>
-                {/* <Link to={`/product/${product_name}`}>
-                    <img
-                        src={data.image_Url[0].url}
-                        alt=""
-                        className="w-full h-[170px] object-contain"
-                    />
-                </Link> */}
                 <Link to="/">
                     <h5 className={`${styles.shop_name}`}>{data.shop.name}</h5>
                 </Link>

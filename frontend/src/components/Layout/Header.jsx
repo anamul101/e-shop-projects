@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../styles/styles';
 import { Link } from 'react-router-dom';
 import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
@@ -9,14 +9,15 @@ import { RxCross1 } from "react-icons/rx";
 import { categoriesData, productData } from "../../static/data";
 import DropDown from './DropDown';
 import Navbar from './Navbar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { backend_url } from '../../server';
 import Cart from '../cart/Cart';
 import Wishlist from '../Wishlist/Wishlist';
+import { getAllProducts } from '../../redux/actions/product';
 
 const Header = ({ activeHeading }) => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
-    const {products} = useSelector((state) => state.products);
+    const {allProducts} = useSelector((state) => state.products);
     const [searchTerm, setSearchTerm] = useState("");
     const [searchData, setSearchData] = useState(null);
     const [active, setActive] = useState(false);
@@ -24,13 +25,17 @@ const Header = ({ activeHeading }) => {
     const [openCart, setOpenCart] = useState(false);
     const [openWishlist, setOpenWishlist] = useState(false);
     const [open, setOpen] = useState(false);
-    console.log(products);
-
+    const dispatch = useDispatch();
+ 
+    useEffect(() => {
+        dispatch(getAllProducts());
+    }, [dispatch])
+    
     const handleSearchChange = (e) => {
         const term = e.target.value;
         setSearchTerm(term);
 
-        const filteredProducts = products && products.filter((product) =>
+        const filteredProducts = allProducts && allProducts.filter((product) =>
             product.name.toLowerCase().includes(term.toLowerCase())
         );
         setSearchData(filteredProducts);
@@ -78,7 +83,7 @@ const Header = ({ activeHeading }) => {
                                                 <Link to={`/product/${Product_name}`}>
                                                     <div className="w-full flex items-start-py-3">
                                                         <img
-                                                            src={`${backend_url}${i.image[0]}`}
+                                                            src={`${backend_url}${i.images[0]}`}
                                                             alt=""
                                                             className="w-[40px] h-[40px] mr-[10px]"
                                                         />
