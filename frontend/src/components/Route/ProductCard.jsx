@@ -16,8 +16,8 @@ const ProductCard = ({ data, isEvent }) => {
     const [open, setOpen] = useState(false);
     const dispatch=useDispatch();
 
-    const d = data.name;
-    const product_name = d.replace(/\s+/g, "-");
+    // const d = data.name;
+    // const product_name = d.replace(/\s+/g, "-");
     const addToCartHandler = (id) => {
         const isItemExists = cart && cart.find((i) => i._id === id);
         if (isItemExists) {
@@ -64,7 +64,7 @@ const ProductCard = ({ data, isEvent }) => {
                 <Link to="/">
                     <h5 className={`${styles.shop_name}`}>{data.shop.name}</h5>
                 </Link>
-                <Link to={`/product/${product_name}`}>
+                <Link to={`/product/${data._id}`}>
                     <h4 className="pb-3 font-[500]">
                         {data.name.length > 40 ? data.name.slice(0, 40) + "..." : data.name}
                     </h4>
