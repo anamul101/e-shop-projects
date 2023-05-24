@@ -7,7 +7,7 @@ import { loadSeller, loadUser } from './redux/actions/user';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './routes/ProtectedRoute';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
-import { ShopAllCoupouns, ShopAllEvents, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage } from './routes/ShopRoutes';
+import { ShopAllCoupouns, ShopAllEvents, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage, ShopPreviewPage } from './routes/ShopRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 
@@ -37,6 +37,7 @@ function App() {
         <Route path='/faq' element={<FAQPage/>}/>
         <Route path='/activation/:activation_token' element={<ActivationPage/>}/>
         {/* shop route */}
+        <Route path="/shop/preview/:id" element={<ShopPreviewPage />} />
         <Route path='/shop-create' element={<ShopCreatePage/>}/>
         <Route path='/shop-login' element={<ShopLoginPage/>}/>
         <Route path='/shop/:id' element={
