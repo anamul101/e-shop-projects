@@ -11,9 +11,10 @@ import { RxCross1 } from "react-icons/rx";
 // import { DataGrid } from '@mui/x-data-grid';
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
-import { loadUser, updateUserInformation } from "../../redux/actions/user";
+import { loadUser, updatUserAddress, updateUserInformation } from "../../redux/actions/user";
 import {toast} from "react-hot-toast"
 import axios from "axios";
+import {Country,State} from "country-state-city"
 
 const ProfileContent = ({ active }) => {
     const { user, error, successMessage } = useSelector((state) => state.user);
@@ -297,7 +298,7 @@ const Address = () => {
     const [address2, setAddress2] = useState("");
     const [addressType, setAddressType] = useState("");
     const { user } = useSelector((state) => state.user);
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const addressTypeData = [
         {
@@ -314,27 +315,27 @@ const Address = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // if (addressType === "" || country === "" || city === "") {
-        //     toast.error("Please fill all the fields!");
-        // } else {
-        //     dispatch(
-        //         updatUserAddress(
-        //             country,
-        //             city,
-        //             address1,
-        //             address2,
-        //             zipCode,
-        //             addressType
-        //         )
-        //     );
-        //     setOpen(false);
-        //     setCountry("");
-        //     setCity("");
-        //     setAddress1("");
-        //     setAddress2("");
-        //     setZipCode(null);
-        //     setAddressType("");
-        // }
+        if (addressType === "" || country === "" || city === "") {
+            toast.error("Please fill all the fields!");
+        } else {
+            dispatch(
+                updatUserAddress(
+                    country,
+                    city,
+                    address1,
+                    address2,
+                    zipCode,
+                    addressType
+                )
+            );
+            setOpen(false);
+            setCountry("");
+            setCity("");
+            setAddress1("");
+            setAddress2("");
+            setZipCode(null);
+            setAddressType("");
+        }
     };
 
     const handleDelete = (item) => {
@@ -343,6 +344,7 @@ const Address = () => {
     };
     return (
         <div className="w-full px-5">
+            {/* handel popop */}
             {open && (
                 <div className="fixed w-full h-screen bg-[#0000004b] top-0 left-0 flex items-center justify-center ">
                     <div className="w-[35%] h-[80vh] bg-white rounded shadow relative overflow-y-scroll">
@@ -371,7 +373,7 @@ const Address = () => {
                                             <option value="" className="block border pb-2">
                                                 choose your country
                                             </option>
-                                            {/* {Country &&
+                                            {Country &&
                                                 Country.getAllCountries().map((item) => (
                                                     <option
                                                         className="block pb-2"
@@ -380,7 +382,7 @@ const Address = () => {
                                                     >
                                                         {item.name}
                                                     </option>
-                                                ))} */}
+                                                ))}
                                         </select>
                                     </div>
 
@@ -396,7 +398,7 @@ const Address = () => {
                                             <option value="" className="block border pb-2">
                                                 choose your city
                                             </option>
-                                            {/* {State &&
+                                            {State &&
                                                 State.getStatesOfCountry(country).map((item) => (
                                                     <option
                                                         className="block pb-2"
@@ -405,7 +407,7 @@ const Address = () => {
                                                     >
                                                         {item.name}
                                                     </option>
-                                                ))} */}
+                                                ))}
                                         </select>
                                     </div>
 
@@ -480,6 +482,7 @@ const Address = () => {
                     </div>
                 </div>
             )}
+
             <div className="flex w-full items-center justify-between">
                 <h1 className="text-[25px] font-[600] text-[#000000ba] pb-2">
                     My Addresses
