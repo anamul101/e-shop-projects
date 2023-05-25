@@ -55,8 +55,8 @@ const ProfileContent = ({ active }) => {
             withCredentials: true,
           })
           .then((response) => {
-             dispatch(loadUser());
-             toast.success("avatar updated successfully!");
+            //  dispatch(loadUser());
+            //  toast.success("avatar updated successfully!");
             window.location.reload();
           })
           .catch((error) => {
