@@ -11,7 +11,7 @@ import { RxCross1 } from "react-icons/rx";
 // import { DataGrid } from '@mui/x-data-grid';
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
-import { loadUser, updatUserAddress, updateUserInformation } from "../../redux/actions/user";
+import { deleteUserAddress, loadUser, updatUserAddress, updateUserInformation } from "../../redux/actions/user";
 import {toast} from "react-hot-toast"
 import axios from "axios";
 import {Country,State} from "country-state-city"
@@ -340,7 +340,7 @@ const Address = () => {
 
     const handleDelete = (item) => {
         const id = item._id;
-        // dispatch(deleteUserAddress(id));
+        dispatch(deleteUserAddress(id));
     };
     return (
         <div className="w-full px-5">
