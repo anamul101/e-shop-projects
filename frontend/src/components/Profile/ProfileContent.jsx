@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { backend_url } from "../../server";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { backend_url, server } from "../../server";
+import { useDispatch, useSelector } from "react-redux";
 import {
     AiOutlineArrowRight,
     AiOutlineCamera,
@@ -11,6 +11,9 @@ import { RxCross1 } from "react-icons/rx";
 // import { DataGrid } from '@mui/x-data-grid';
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
+import { loadUser, updateUserInformation } from "../../redux/actions/user";
+import {toast} from "react-hot-toast"
+import axios from "axios";
 
 const ProfileContent = ({ active }) => {
     const { user, error, successMessage } = useSelector((state) => state.user);
@@ -19,12 +22,47 @@ const ProfileContent = ({ active }) => {
     const [phoneNumber, setPhoneNumber] = useState(user && user.phoneNumber);
     const [password, setPassword] = useState("");
     const [avatar, setAvatar] = useState(null);
+    const dispatch = useDispatch();
 
-    const handleImage = () => {
-
+    useEffect(() => {
+        if (error) {
+          toast.error(error);
+          dispatch({ type: "clearErrors" });
+        }
+        if (successMessage) {
+          toast.success(successMessage);
+          dispatch({ type: "clearMessages" });
+        }
+      }, [error, successMessage]);
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateUserInformation( name,email,phoneNumber, password));
     }
-    const handleSubmit = () => {
-
+    const handleImage = async (e) => {
+        const file = e.target.files[0];
+        setAvatar(file);
+    
+        const formData = new FormData();
+    
+        formData.append("image", e.target.files[0]);
+    
+        await axios
+          .put(`${server}/user/update-avatar`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+            withCredentials: true,
+          })
+          .then((response) => {
+             dispatch(loadUser());
+             toast.success("avatar updated successfully!");
+            window.location.reload();
+          })
+          .catch((error) => {
+            toast.error(error);
+          });
+    
     }
     return (
         <div className="w-full">
