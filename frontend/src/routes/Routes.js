@@ -13,6 +13,8 @@ import ShopCreatePage from "../pages/ShopCreate"
 import SellerActivationPage from "../pages/SellerActivationPage"
 import ShopLoginPage from "../pages/ShopLoginPage"
 import CheckoutPage from "../pages/CheckoutPage"
+import PaymentPage from "../pages/PaymentPage"
+
 
 export{
     HomePage,
@@ -30,4 +32,5 @@ export{
     SellerActivationPage,
     ShopLoginPage,
     CheckoutPage,
+    PaymentPage,
 }
