@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import {BrowserRouter,Routes,Route, Navigate} from "react-router-dom";
-import { LoginPage, SignupPage,ActivationPage, HomePage, ProductsPage, BestSellingPage, EventsPage, FAQPage, OrderSuccessPage, ProductDetailsPage, ProfilePage, ShopCreatePage, SellerActivationPage, ShopLoginPage } from './routes/Routes';
+import { LoginPage, SignupPage,ActivationPage, HomePage, ProductsPage, BestSellingPage, EventsPage, FAQPage, OrderSuccessPage, ProductDetailsPage, ProfilePage, ShopCreatePage, SellerActivationPage, ShopLoginPage, CheckoutPage } from './routes/Routes';
 import Store from './redux/store';
 import { loadSeller, loadUser } from './redux/actions/user';
 import { Toaster } from 'react-hot-toast';
@@ -32,6 +32,14 @@ function App() {
             <ProfilePage/>
           </ProtectedRoute>
         }/>
+        <Route
+          path="/checkout"
+          element={
+            <ProtectedRoute>
+              <CheckoutPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path='/best-selling' element={<BestSellingPage/>}/>
         <Route path='/events' element={<EventsPage/>}/>
         <Route path='/faq' element={<FAQPage/>}/>
