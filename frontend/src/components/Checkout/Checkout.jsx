@@ -50,7 +50,7 @@ const Checkout = () => {
 
     // update local storage with the updated orders array
     localStorage.setItem("latestOrder", JSON.stringify(orderData));
-    navigate("/payment");
+    navigate('/payment');
    }
   };
 
