@@ -68,7 +68,7 @@ router.get(
   })
 );
 
-// get all orders of seller
+// get all orders of sellers
 router.get(
   "/get-seller-all-orders/:shopId",
   catchAsyncErrors(async (req, res, next) => {
