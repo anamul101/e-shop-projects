@@ -7,7 +7,7 @@ import { loadSeller, loadUser } from './redux/actions/user';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './routes/ProtectedRoute';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
-import { ShopAllCoupouns, ShopAllEvents, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage, ShopPreviewPage } from './routes/ShopRoutes';
+import { ShopAllCoupouns, ShopAllEvents, ShopAllOrders, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage, ShopPreviewPage } from './routes/ShopRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 import axios from 'axios';
@@ -79,6 +79,11 @@ function App() {
           <Route path='/shop/:id' element={
             <SellerProtectedRoute>
               <ShopHomePage />
+            </SellerProtectedRoute>
+          } />
+          <Route path='/dashboard-orders' element={
+            <SellerProtectedRoute>
+              <ShopAllOrders />
             </SellerProtectedRoute>
           } />
           <Route path='/dashboard' element={
