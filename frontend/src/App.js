@@ -1,13 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import { LoginPage, SignupPage, ActivationPage, HomePage, ProductsPage, BestSellingPage, EventsPage, FAQPage, OrderSuccessPage, ProductDetailsPage, ProfilePage, ShopCreatePage, SellerActivationPage, ShopLoginPage, CheckoutPage, PaymentPage } from './routes/Routes';
+import { 
+        LoginPage, 
+        SignupPage, 
+        ActivationPage, 
+        HomePage, 
+        ProductsPage, 
+        BestSellingPage, 
+        EventsPage, 
+        FAQPage, 
+        OrderSuccessPage, 
+        ProductDetailsPage, 
+        ProfilePage, 
+        ShopCreatePage, 
+        SellerActivationPage, 
+        ShopLoginPage, 
+        CheckoutPage, 
+        PaymentPage,
+        OrderDetailsPage
+      } from './routes/Routes';
 import Store from './redux/store';
 import { loadSeller, loadUser } from './redux/actions/user';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './routes/ProtectedRoute';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
-import { ShopAllCoupouns, ShopAllEvents, ShopAllOrders, ShopAllProducts, ShopCreateEvents, ShopCreateProduct, ShopDashboardPage, ShopHomePage, ShopOrderDetails, ShopPreviewPage } from './routes/ShopRoutes';
+import { 
+        ShopAllCoupouns, 
+        ShopAllEvents, 
+        ShopAllOrders, 
+        ShopAllProducts, 
+        ShopCreateEvents, 
+        ShopCreateProduct, 
+        ShopDashboardPage, 
+        ShopHomePage, 
+        ShopOrderDetails, 
+        ShopPreviewPage 
+      } from './routes/ShopRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 import axios from 'axios';
@@ -59,6 +88,14 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
           } />
+           <Route
+          path="/user/order/:id"
+          element={
+            <ProtectedRoute>
+              <OrderDetailsPage />
+            </ProtectedRoute>
+          }
+        />
           <Route
             path="/checkout"
             element={

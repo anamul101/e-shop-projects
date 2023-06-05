@@ -19,5 +19,5 @@ export{
     ShopAllEvents,
     ShopAllCoupouns,
     ShopAllOrders,
-    ShopOrderDetails
+    ShopOrderDetails,
 }
