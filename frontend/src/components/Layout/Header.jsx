@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from '../../styles/styles';
 import { Link } from 'react-router-dom';
 import { AiOutlineSearch, AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
@@ -6,7 +6,7 @@ import { IoIosArrowForward, IoIosArrowDown } from 'react-icons/io';
 import { BiMenuAltLeft } from 'react-icons/bi';
 import { CgProfile } from 'react-icons/cg';
 import { RxCross1 } from "react-icons/rx";
-import { categoriesData, productData } from "../../static/data";
+import { categoriesData } from "../../static/data";
 import DropDown from './DropDown';
 import Navbar from './Navbar';
 import { useSelector } from 'react-redux';
@@ -16,6 +16,7 @@ import Wishlist from '../Wishlist/Wishlist';
 
 const Header = ({ activeHeading }) => {
     const { isAuthenticated, user } = useSelector((state) => state.user);
+    const { isSeller } = useSelector((state) => state.seller);
     const {cart}=useSelector((state)=> state.cart);
     const {wishlist}=useSelector((state)=>state.wishlist);
     const {allProducts} = useSelector((state) => state.products);
@@ -93,7 +94,7 @@ const Header = ({ activeHeading }) => {
                     <div className={`${styles.button}`}>
                         <Link to="/shop-create">
                             <h1 className="text-[#fff] flex items-center">
-                                Become Seller <IoIosArrowForward className="ml-1" />
+                                 {isSeller ? "Go Dashboard": "Become Seller"} <IoIosArrowForward className="ml-1" />
                             </h1>
                         </Link>
                     </div>
