@@ -123,7 +123,7 @@ function App() {
               <ShopAllOrders />
             </SellerProtectedRoute>
           } />
-          <Route path='/order:id' element={
+          <Route path='/order/:id' element={
             <SellerProtectedRoute>
               <ShopOrderDetails />
             </SellerProtectedRoute>
