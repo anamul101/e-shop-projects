@@ -18,7 +18,8 @@ import {
         ShopLoginPage, 
         CheckoutPage, 
         PaymentPage,
-        OrderDetailsPage
+        OrderDetailsPage,
+        TrackOrderPage
       } from './routes/Routes';
 import Store from './redux/store';
 import { loadSeller, loadUser } from './redux/actions/user';
@@ -126,6 +127,11 @@ function App() {
           <Route path='/order/:id' element={
             <SellerProtectedRoute>
               <ShopOrderDetails />
+            </SellerProtectedRoute>
+          } />
+          <Route path='/user/track/order/:id' element={
+            <SellerProtectedRoute>
+              <TrackOrderPage />
             </SellerProtectedRoute>
           } />
           <Route path='/dashboard' element={
