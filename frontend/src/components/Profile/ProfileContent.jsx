@@ -240,10 +240,48 @@ const AllOrders = () => {
     )
 }
 const AllRefundOrders = () => {
+    const { user } = useSelector((state) => state.user);
+    const { orders } = useSelector((state) => state.order);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getAllOrdersOfUser(user._id))
+    }, [])
+    const eligibleOrders = orders && orders.filter((item)=>item.status === "Processing refund")
     return (
-        <div>
-
-        </div>
+        <div className="pl-8 pt-1">
+                <div className="overflow-x-auto">
+                    <table className="table w-full">
+                        {/* head */}
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Status</th>
+                                <th>Items Qty</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                               eligibleOrders && eligibleOrders.map((singleOrder)=>
+                                <tr>
+                                    <th>{singleOrder._id}</th>
+                                    <td><p className="text-green-600">{singleOrder.status}</p></td>
+                                    <td>{singleOrder.cart.length}</td>
+                                    <td>USD${singleOrder.totalPrice}</td>
+                                    <td>
+                                        <button className="hover:background-gray-400">
+                                        <Link to={`/user/order/${singleOrder._id}`}>
+                                            <AiOutlineArrowRight size={20}/>
+                                        </Link>
+                                        </button>
+                                    </td>
+                                </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
     )
 }
 const TrackOrder = () => {
