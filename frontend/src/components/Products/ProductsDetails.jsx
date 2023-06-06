@@ -18,7 +18,7 @@ import Ratings from './Ratings';
 const ProductsDetails = ({ data }) => {
     const { products } = useSelector((state) => state.products);
     const { wishlist } = useSelector((state) => state.wishlist);
-    const { cart} = useSelector((state) => state.cart);
+    const { cart } = useSelector((state) => state.cart);
     const [count, setCount] = useState(1);
     const [click, setClick] = useState(false);
     const [select, setSelect] = useState(0);
@@ -72,20 +72,20 @@ const ProductsDetails = ({ data }) => {
     };
 
     const totalReviewsLength =
-    products &&
-    products.reduce((acc, product) => acc + product.reviews.length, 0);
+        products &&
+        products.reduce((acc, product) => acc + product.reviews.length, 0);
 
-  const totalRatings =
-    products &&
-    products.reduce(
-      (acc, product) =>
-        acc + product.reviews.reduce((sum, review) => sum + review.rating, 0),
-      0
-    );
+    const totalRatings =
+        products &&
+        products.reduce(
+            (acc, product) =>
+                acc + product.reviews.reduce((sum, review) => sum + review.rating, 0),
+            0
+        );
 
-  const avg =  totalRatings / totalReviewsLength || 0;
+    const avg = totalRatings / totalReviewsLength || 0;
 
-  const averageRating = avg.toFixed(2);
+    const averageRating = avg.toFixed(2);
 
     const handleMessageSubmit = async () => {
         navigate("/inbox?conversation=24rerlklkfls35")
@@ -170,7 +170,7 @@ const ProductsDetails = ({ data }) => {
                                         </div>
                                     </div>
                                     <div className={`${styles.button} !mt-6 !rounded !h-11 flex items-center`}
-                                    onClick={()=>addToCartHandler(data._id)}
+                                        onClick={() => addToCartHandler(data._id)}
                                     >
                                         <span className="text-white flex items-center">
                                             Add to cart <AiOutlineShoppingCart className="ml-1" />
@@ -192,7 +192,7 @@ const ProductsDetails = ({ data }) => {
                                                     </h3>
                                                 </Link>
                                                 <h5 className="pb-3 text-[15px]">
-                                                ({averageRating}/5) Ratings
+                                                    ({averageRating}/5) Ratings
                                                 </h5>
                                             </div>
                                             <div
@@ -211,7 +211,7 @@ const ProductsDetails = ({ data }) => {
                         <br />
                         <br />
                         <div>
-                            <ProductDetailsInfo data={data} products={products} totalRatings={totalRatings} averageRating={averageRating}/>
+                            <ProductDetailsInfo data={data} products={products} totalRatings={totalRatings} averageRating={averageRating} />
                         </div>
                     </div>
                 ) : null
@@ -220,7 +220,7 @@ const ProductsDetails = ({ data }) => {
     );
 };
 
-const ProductDetailsInfo = ({ data, products ,totalRatings,averageRating}) => {
+const ProductDetailsInfo = ({ data, products, totalRatings, averageRating }) => {
     const [active, setActive] = useState(1);
     return (
         <div className="bg-[#f5f6fb] px-3 800px:px-10 py-2 rounded">
@@ -268,30 +268,30 @@ const ProductDetailsInfo = ({ data, products ,totalRatings,averageRating}) => {
             {
                 active === 2 ? (
                     <div className="w-full min-h-[40vh] flex flex-col items-center py-3 overflow-y-scroll">
-                    {data &&
-                      data.reviews.map((item, index) => (
-                        <div className="w-full flex my-2">
-                          <img
-                            src={`${backend_url}/${item.user.avatar}`}
-                            alt=""
-                            className="w-[50px] h-[50px] rounded-full"
-                          />
-                          <div className="pl-2 ">
-                            <div className="w-full flex items-center">
-                              <h1 className="font-[500] mr-3">{item.user.name}</h1>
-                              <Ratings rating={data?.ratings} />
-                            </div>
-                            <p>{item.comment}</p>
-                          </div>
+                        {data &&
+                            data.reviews.map((item, index) => (
+                                <div className="w-full flex my-2">
+                                    <img
+                                        src={`${backend_url}/${item.user.avatar}`}
+                                        alt=""
+                                        className="w-[50px] h-[50px] rounded-full"
+                                    />
+                                    <div className="pl-2 ">
+                                        <div className="w-full flex items-center">
+                                            <h1 className="font-[500] mr-3">{item.user.name}</h1>
+                                            <Ratings rating={data?.ratings} />
+                                        </div>
+                                        <p>{item.comment}</p>
+                                    </div>
+                                </div>
+                            ))}
+
+                        <div className="w-full flex justify-center">
+                            {data && data.reviews.length === 0 && (
+                                <h5>No Reviews have for this product!</h5>
+                            )}
                         </div>
-                      ))}
-          
-                    <div className="w-full flex justify-center">
-                      {data && data.reviews.length === 0 && (
-                        <h5>No Reviews have for this product!</h5>
-                      )}
                     </div>
-                  </div>
                 ) : null
             }
             {
