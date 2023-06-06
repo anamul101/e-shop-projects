@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-hot-toast';
 import { addTocart } from '../../redux/actions/cart';
 import { addToWishlist, removeFromWishlist } from '../../redux/actions/wishlist';
+import Ratings from '../Products/Ratings';
 
 const ProductDetailsCard = ({ setOpen, data }) => {
     const {cart}=useSelector((state)=> state.cart);
@@ -93,7 +94,7 @@ const ProductDetailsCard = ({ setOpen, data }) => {
                                                         {data.shop.name}
                                                     </h3>
                                                     <h5 className="pb-3 text-[15px]">
-                                                        ({data.shop.ratings}) Ratings
+                                                    <Ratings rating={data?.ratings} />
                                                     </h5>
                                                 </div>
                                             </Link>
