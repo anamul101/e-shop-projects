@@ -31,6 +31,7 @@ import {
         ShopAllEvents, 
         ShopAllOrders, 
         ShopAllProducts, 
+        ShopAllRefunds, 
         ShopCreateEvents, 
         ShopCreateProduct, 
         ShopDashboardPage, 
@@ -127,6 +128,11 @@ function App() {
           <Route path='/order/:id' element={
             <SellerProtectedRoute>
               <ShopOrderDetails />
+            </SellerProtectedRoute>
+          } />
+          <Route path='dashboard-refunds' element={
+            <SellerProtectedRoute>
+              <ShopAllRefunds />
             </SellerProtectedRoute>
           } />
           <Route path='/user/track/order/:id' element={
