@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { backend_url, server } from '../../server';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import styles from "../../styles/styles";
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
@@ -9,6 +9,7 @@ import Loader from "../Layout/Loader"
 
 const ShopInfo = ({ isOwner }) => {
   const [data,setData] = useState({});
+  const {products} = useSelector((state) => state.products);
   const [isLoading,setIsLoading] = useState(false);
   const {id} = useParams();
   const dispatch = useDispatch();
@@ -29,6 +30,14 @@ const ShopInfo = ({ isOwner }) => {
     });
     window.location.reload();
   }
+  const totalReviewsLength =
+  products &&
+  products.reduce((acc, product) => acc + product.reviews.length, 0);
+
+const totalRatings = products && products.reduce((acc,product) => acc + product.reviews.reduce((sum,review) => sum + review.rating, 0),0);
+
+const averageRating = totalRatings / totalReviewsLength || 0;
+
   return (
     <>
     {
@@ -59,11 +68,11 @@ const ShopInfo = ({ isOwner }) => {
         </div>
         <div className="p-3">
           <h5 className="font-[600]">Total Products</h5>
-          <h4 className="text-[#000000a6]">10</h4>
+          <h4 className="text-[#000000a6]">{products && products.length}</h4>
         </div>
         <div className="p-3">
           <h5 className="font-[600]">Shop Ratings</h5>
-          <h4 className="text-[#000000b0]">4/5</h4>
+          <h4 className="text-[#000000b0]">{averageRating}/5</h4>
         </div>
         <div className="p-3">
           <h5 className="font-[600]">Joined On</h5>
