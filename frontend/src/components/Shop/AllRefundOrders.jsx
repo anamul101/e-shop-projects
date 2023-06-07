@@ -15,6 +15,7 @@ const AllRefundOrder = () => {
     useEffect(() => {
         dispatch(getAllOrdersOfShop(seller._id));
     }, [dispatch]);
+    const refundOrders = orders && orders.filter((item) => item.status === "Processing refund" || item.status === "Refund Success");
 
     return (
         <>
@@ -35,7 +36,7 @@ const AllRefundOrder = () => {
                             </thead>
                             <tbody>
                                 {
-                                    orders && orders.map((singleOrder) =>
+                                   refundOrders && refundOrders.map((singleOrder) =>
                                         <tr>
                                             <th>{singleOrder._id}</th>
                                             <td><p className="text-green-600">{singleOrder.status}</p></td>
@@ -60,4 +61,4 @@ const AllRefundOrder = () => {
     );
 };
 
- export default AllRefundOrder ;
+export default AllRefundOrder;
