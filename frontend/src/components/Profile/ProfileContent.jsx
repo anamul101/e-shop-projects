@@ -7,8 +7,6 @@ import {
     AiOutlineDelete,
 } from "react-icons/ai";
 import { RxCross1 } from "react-icons/rx";
-// import { Button } from "@material-ui/core";
-// import { DataGrid } from '@mui/x-data-grid';
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { deleteUserAddress, loadUser, updatUserAddress, updateUserInformation } from "../../redux/actions/user";
@@ -58,9 +56,8 @@ const ProfileContent = ({ active }) => {
                 withCredentials: true,
             })
             .then((response) => {
-                //  dispatch(loadUser());
-                //  toast.success("avatar updated successfully!");
-                window.location.reload();
+                 dispatch(loadUser());
+                 toast.success("avatar updated successfully!");
             })
             .catch((error) => {
                 toast.error(error);

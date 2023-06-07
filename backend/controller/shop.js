@@ -201,6 +201,35 @@ router.get(
     }
   })
 );
-  
+
+// update shop profile picture
+router.put(
+  "/update-shop-avatar",
+  isSeller,
+  upload.single("image"),
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      const existsUser = await Shop.findById(req.seller._id);
+
+      const existAvatarPath = `uploads/${existsUser.avatar}`;
+
+      fs.unlinkSync(existAvatarPath);
+
+      const fileUrl = path.join(req.file.filename);
+
+      const seller = await Shop.findByIdAndUpdate(req.seller._id, {
+        avatar: fileUrl,
+      });
+
+      res.status(200).json({
+        success: true,
+        seller,
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+
 
 module.exports = router;

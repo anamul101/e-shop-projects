@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { backend_url, server } from '../../server';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import styles from "../../styles/styles";
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
@@ -9,7 +9,6 @@ import Loader from "../Layout/Loader"
 
 const ShopInfo = ({ isOwner }) => {
   const [data,setData] = useState({});
-  // const {products} = useSelector((state) => state.products);
   const [isLoading,setIsLoading] = useState(false);
   const {id} = useParams();
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ const ShopInfo = ({ isOwner }) => {
       setData(res.data.shop);
       setIsLoading(false);
     }).catch((error) => {
-      console.log(error);
       setIsLoading(false);
     })
   }, [])
