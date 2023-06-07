@@ -38,7 +38,8 @@ import {
         ShopHomePage, 
         ShopOrderDetails, 
         ShopPreviewPage, 
-        ShopWithDrawMoneyPage
+        ShopWithDrawMoneyPage,
+        ShopSettingsPage,
       } from './routes/ShopRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
@@ -119,6 +120,11 @@ function App() {
           <Route path='/shop/:id' element={
             <SellerProtectedRoute>
               <ShopHomePage />
+            </SellerProtectedRoute>
+          } />
+          <Route path='/settings' element={
+            <SellerProtectedRoute>
+              <ShopSettingsPage />
             </SellerProtectedRoute>
           } />
           <Route path='/dashboard-orders' element={
