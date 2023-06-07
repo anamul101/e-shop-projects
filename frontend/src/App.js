@@ -37,7 +37,8 @@ import {
         ShopDashboardPage, 
         ShopHomePage, 
         ShopOrderDetails, 
-        ShopPreviewPage 
+        ShopPreviewPage, 
+        ShopWithDrawMoneyPage
       } from './routes/ShopRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
@@ -170,6 +171,14 @@ function App() {
               <ShopAllCoupouns />
             </SellerProtectedRoute>
           } />
+          <Route
+          path="/dashboard-withdraw-money"
+          element={
+            <SellerProtectedRoute>
+              <ShopWithDrawMoneyPage />
+            </SellerProtectedRoute>
+          }
+        />
           <Route path='/seller/activation/:activation_token' element={<SellerActivationPage />} />
         </Routes>
         <Toaster
