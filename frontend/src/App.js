@@ -40,6 +40,7 @@ import {
         ShopPreviewPage, 
         ShopWithDrawMoneyPage,
         ShopSettingsPage,
+        ShopInboxPage,
       } from './routes/ShopRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
@@ -182,6 +183,14 @@ function App() {
           element={
             <SellerProtectedRoute>
               <ShopWithDrawMoneyPage />
+            </SellerProtectedRoute>
+          }
+        />
+         <Route
+          path="/dashboard-messages"
+          element={
+            <SellerProtectedRoute>
+              <ShopInboxPage />
             </SellerProtectedRoute>
           }
         />
