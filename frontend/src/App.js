@@ -1,47 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { BrowserRouter, Routes, Route} from "react-router-dom";
-import { 
-        LoginPage, 
-        SignupPage, 
-        ActivationPage, 
-        HomePage, 
-        ProductsPage, 
-        BestSellingPage, 
-        EventsPage, 
-        FAQPage, 
-        OrderSuccessPage, 
-        ProductDetailsPage, 
-        ProfilePage, 
-        ShopCreatePage, 
-        SellerActivationPage, 
-        ShopLoginPage, 
-        CheckoutPage, 
-        PaymentPage,
-        OrderDetailsPage,
-        TrackOrderPage
-      } from './routes/Routes';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  LoginPage,
+  SignupPage,
+  ActivationPage,
+  HomePage,
+  ProductsPage,
+  BestSellingPage,
+  EventsPage,
+  FAQPage,
+  OrderSuccessPage,
+  ProductDetailsPage,
+  ProfilePage,
+  ShopCreatePage,
+  SellerActivationPage,
+  ShopLoginPage,
+  CheckoutPage,
+  PaymentPage,
+  OrderDetailsPage,
+  TrackOrderPage,
+  UserInbox
+} from './routes/Routes';
 import Store from './redux/store';
 import { loadSeller, loadUser } from './redux/actions/user';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './routes/ProtectedRoute';
 import SellerProtectedRoute from './routes/SellerProtectedRoute';
-import { 
-        ShopAllCoupouns, 
-        ShopAllEvents, 
-        ShopAllOrders, 
-        ShopAllProducts, 
-        ShopAllRefunds, 
-        ShopCreateEvents, 
-        ShopCreateProduct, 
-        ShopDashboardPage, 
-        ShopHomePage, 
-        ShopOrderDetails, 
-        ShopPreviewPage, 
-        ShopWithDrawMoneyPage,
-        ShopSettingsPage,
-        ShopInboxPage,
-      } from './routes/ShopRoutes';
+import {
+  ShopAllCoupouns,
+  ShopAllEvents,
+  ShopAllOrders,
+  ShopAllProducts,
+  ShopAllRefunds,
+  ShopCreateEvents,
+  ShopCreateProduct,
+  ShopDashboardPage,
+  ShopHomePage,
+  ShopOrderDetails,
+  ShopPreviewPage,
+  ShopWithDrawMoneyPage,
+  ShopSettingsPage,
+  ShopInboxPage,
+} from './routes/ShopRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 import axios from 'axios';
@@ -68,20 +69,20 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      {stripeApikey && (
-        <Elements stripe={loadStripe(stripeApikey)}>
-          <Routes>
-            <Route
-              path="/payment"
-              element={
-                <ProtectedRoute>
-                  <PaymentPage />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </Elements>
-      )}
+        {stripeApikey && (
+          <Elements stripe={loadStripe(stripeApikey)}>
+            <Routes>
+              <Route
+                path="/payment"
+                element={
+                  <ProtectedRoute>
+                    <PaymentPage />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </Elements>
+        )}
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/login' element={<LoginPage />} />
@@ -93,11 +94,19 @@ function App() {
               <ProfilePage />
             </ProtectedRoute>
           } />
+          <Route
+            path="/user/order/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetailsPage />
+              </ProtectedRoute>
+            }
+          />
            <Route
-          path="/user/order/:id"
+          path="/inbox"
           element={
             <ProtectedRoute>
-              <OrderDetailsPage />
+              <UserInbox />
             </ProtectedRoute>
           }
         />
@@ -179,21 +188,21 @@ function App() {
             </SellerProtectedRoute>
           } />
           <Route
-          path="/dashboard-withdraw-money"
-          element={
-            <SellerProtectedRoute>
-              <ShopWithDrawMoneyPage />
-            </SellerProtectedRoute>
-          }
-        />
-         <Route
-          path="/dashboard-messages"
-          element={
-            <SellerProtectedRoute>
-              <ShopInboxPage />
-            </SellerProtectedRoute>
-          }
-        />
+            path="/dashboard-withdraw-money"
+            element={
+              <SellerProtectedRoute>
+                <ShopWithDrawMoneyPage />
+              </SellerProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard-messages"
+            element={
+              <SellerProtectedRoute>
+                <ShopInboxPage />
+              </SellerProtectedRoute>
+            }
+          />
           <Route path='/seller/activation/:activation_token' element={<SellerActivationPage />} />
         </Routes>
         <Toaster

@@ -16,6 +16,7 @@ import CheckoutPage from "../pages/CheckoutPage"
 import PaymentPage from "../pages/PaymentPage"
 import OrderDetailsPage from "../pages/OrderDetailsPage" 
 import TrackOrderPage from "../pages/TrackOrderPage" 
+import UserInbox from "../pages/UserInbox" 
 
 
 export{
@@ -37,4 +38,5 @@ export{
     PaymentPage,
     OrderDetailsPage,
     TrackOrderPage,
+    UserInbox,
 }
