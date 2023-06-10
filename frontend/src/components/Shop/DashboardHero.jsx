@@ -20,10 +20,10 @@ const DashboardHero = () => {
         const orderData=orders && orders.filter((item)=> item.status === "Delivered");
         setDeliveredOrder(orderData)
     }, [dispatch]);
-    const totalEarningWithoutTax =DeliveredOrder&&DeliveredOrder.reduce((acc,item)=>acc+item.totalPrice,0);
-    const serviceCharge = totalEarningWithoutTax*0.1;
+    const totalEarningWithoutTax =DeliveredOrder ? DeliveredOrder.reduce((acc,item)=>acc+item.totalPrice,0):0;
+    const serviceCharge = totalEarningWithoutTax?totalEarningWithoutTax*0.1:0;
 
-    const availableBalance = totalEarningWithoutTax-serviceCharge.toFixed(2);
+    const availableBalance = totalEarningWithoutTax-serviceCharge.toFixed(2) || 0;
 
     return (
         <div className="w-full p-8">
