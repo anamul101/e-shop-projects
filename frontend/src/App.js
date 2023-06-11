@@ -43,15 +43,14 @@ import {
   ShopSettingsPage,
   ShopInboxPage,
 } from './routes/ShopRoutes';
-import {
-  AdminDashboardPage
-} from './routes/AdminRoutes';
+
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 import axios from 'axios';
 import { server } from './server';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
+import {AdminDashboardPage} from './routes/AdminRoutes';
 
 
 function App() {
