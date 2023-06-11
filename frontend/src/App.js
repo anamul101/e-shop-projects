@@ -43,6 +43,9 @@ import {
   ShopSettingsPage,
   ShopInboxPage,
 } from './routes/ShopRoutes';
+import {
+  AdminDashboardPage
+} from './routes/AdminRoutes';
 import { getAllEvents } from './redux/actions/event';
 import { getAllProducts } from './redux/actions/product';
 import axios from 'axios';
@@ -204,6 +207,15 @@ function App() {
             }
           />
           <Route path='/seller/activation/:activation_token' element={<SellerActivationPage />} />
+          {/* Admin Routes */}
+        <Route
+          path="/admin/dashboard"
+          element={
+            // <ProtectedAdminRoute>
+              <AdminDashboardPage />
+            // </ProtectedAdminRoute>
+          }
+        />
         </Routes>
         <Toaster
           position="top-center"
