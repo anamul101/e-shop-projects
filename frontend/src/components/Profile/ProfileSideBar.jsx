@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RxPerson } from "react-icons/rx";
 import {
     AiOutlineLogin,
@@ -12,8 +12,10 @@ import { TbAddressBook } from "react-icons/tb";
 import { server } from "../../server";
 import axios from "axios";
 import toast from 'react-hot-toast';
+import { useSelector } from "react-redux";
 
 const ProfileSideBar = ({ active, setActive }) => {
+    const { user } = useSelector((state) => state.user);
     const navigate = useNavigate()
     const logoutHandler = () => {
         axios
@@ -93,6 +95,26 @@ const ProfileSideBar = ({ active, setActive }) => {
                     Address
                 </span>
             </div>
+            {user && user?.role === "Admin" && (
+                <Link to="/admin/dashboard">
+                    <div
+                        className="flex items-center cursor-pointer w-full mb-8"
+                        onClick={() => setActive(8)}
+                    >
+                        {/* <MdOutlineAdminPanelSettings
+                            size={20}
+                            color={active === 7 ? "red" : ""}
+                        /> */}
+                        <span
+                            className={`pl-3 ${active === 8 ? "text-[red]" : ""
+                                } 800px:block hidden`}
+                        >
+                            Admin Dashboard
+                        </span>
+                    </div>
+                </Link>
+            )}
+
             <div
                 className="single_item flex items-center cursor-pointer w-full mb-8"
                 onClick={logoutHandler}
