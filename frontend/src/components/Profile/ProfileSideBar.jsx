@@ -7,7 +7,7 @@ import {
 } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { HiOutlineReceiptRefund, HiOutlineShoppingBag } from "react-icons/hi";
-import { MdOutlinePassword, MdOutlineTrackChanges } from "react-icons/md";
+import { MdOutlineAdminPanelSettings, MdOutlinePassword, MdOutlineTrackChanges } from "react-icons/md";
 import { TbAddressBook } from "react-icons/tb";
 import { server } from "../../server";
 import axios from "axios";
@@ -101,10 +101,10 @@ const ProfileSideBar = ({ active, setActive }) => {
                         className="flex items-center cursor-pointer w-full mb-8"
                         onClick={() => setActive(8)}
                     >
-                        {/* <MdOutlineAdminPanelSettings
+                        <MdOutlineAdminPanelSettings
                             size={20}
                             color={active === 7 ? "red" : ""}
-                        /> */}
+                        />
                         <span
                             className={`pl-3 ${active === 8 ? "text-[red]" : ""
                                 } 800px:block hidden`}

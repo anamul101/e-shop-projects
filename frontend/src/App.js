@@ -51,6 +51,7 @@ import { server } from './server';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
 import {AdminDashboardPage} from './routes/AdminRoutes';
+import ProtectedAdminRoute from './routes/ProtectedAdminRoute';
 
 
 function App() {
@@ -210,9 +211,9 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={
-            // <ProtectedAdminRoute>
+            <ProtectedAdminRoute>
               <AdminDashboardPage />
-            // </ProtectedAdminRoute>
+            </ProtectedAdminRoute>
           }
         />
         </Routes>
