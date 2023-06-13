@@ -59,21 +59,17 @@ export const userReducer = createReducer(initialState, {
   },
 
   // get all users --- admin
-  // getAllUsersRequest: (state) => {
-  //   state.usersLoading = true;
-  // },
-  // getAllUsersSuccess: (state, action) => {
-  //   state.usersLoading = false;
-  //   state.users = action.payload;
-  // },
-  // getAllUsersFailed: (state, action) => {
-  //   state.usersLoading = false;
-  //   state.error = action.payload;
-  // },
-  // clearErrors: (state) => {
-  //   state.error = null;
-  // },
-
+  getAllUsersRequest: (state) => {
+    state.usersLoading = true;
+  },
+  getAllUsersSuccess: (state, action) => {
+    state.usersLoading = false;
+    state.users = action.payload;
+  },
+  getAllUsersFailed: (state, action) => {
+    state.usersLoading = false;
+    state.error = action.payload;
+  },
   clearMessages: (state) => {
     state.successMessage = null;
   },

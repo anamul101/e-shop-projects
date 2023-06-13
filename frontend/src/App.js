@@ -50,7 +50,7 @@ import axios from 'axios';
 import { server } from './server';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
-import {AdminDashboardPage} from './routes/AdminRoutes';
+import {AdminDashboardPage, AdminDashboardUsers} from './routes/AdminRoutes';
 import ProtectedAdminRoute from './routes/ProtectedAdminRoute';
 
 
@@ -213,6 +213,14 @@ function App() {
           element={
             <ProtectedAdminRoute>
               <AdminDashboardPage />
+            </ProtectedAdminRoute>
+          }
+        />
+        <Route
+          path="/admin-users"
+          element={
+            <ProtectedAdminRoute>
+              <AdminDashboardUsers />
             </ProtectedAdminRoute>
           }
         />
