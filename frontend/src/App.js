@@ -50,7 +50,7 @@ import axios from 'axios';
 import { server } from './server';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
-import {AdminDashboardPage, AdminDashboardSellers, AdminDashboardUsers} from './routes/AdminRoutes';
+import { AdminDashboardOrders, AdminDashboardPage, AdminDashboardSellers, AdminDashboardUsers } from './routes/AdminRoutes';
 import ProtectedAdminRoute from './routes/ProtectedAdminRoute';
 
 
@@ -105,14 +105,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-           <Route
-          path="/inbox"
-          element={
-            <ProtectedRoute>
-              <UserInbox />
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/inbox"
+            element={
+              <ProtectedRoute>
+                <UserInbox />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/checkout"
             element={
@@ -208,30 +208,38 @@ function App() {
           />
           <Route path='/seller/activation/:activation_token' element={<SellerActivationPage />} />
           {/* Admin Routes */}
-        <Route
-          path="/admin/dashboard"
-          element={
-            <ProtectedAdminRoute>
-              <AdminDashboardPage />
-            </ProtectedAdminRoute>
-          }
-        />
-        <Route
-          path="/admin-users"
-          element={
-            <ProtectedAdminRoute>
-              <AdminDashboardUsers />
-            </ProtectedAdminRoute>
-          }
-        />
-        <Route
-        path="/admin-sellers"
-        element={
-          <ProtectedAdminRoute>
-            <AdminDashboardSellers />
-          </ProtectedAdminRoute>
-        }
-      />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedAdminRoute>
+                <AdminDashboardPage />
+              </ProtectedAdminRoute>
+            }
+          />
+          <Route
+            path="/admin-users"
+            element={
+              <ProtectedAdminRoute>
+                <AdminDashboardUsers />
+              </ProtectedAdminRoute>
+            }
+          />
+          <Route
+            path="/admin-sellers"
+            element={
+              <ProtectedAdminRoute>
+                <AdminDashboardSellers />
+              </ProtectedAdminRoute>
+            }
+          />
+          <Route
+            path="/admin-orders"
+            element={
+              <ProtectedAdminRoute>
+                <AdminDashboardOrders />
+              </ProtectedAdminRoute>
+            }
+          />
         </Routes>
         <Toaster
           position="top-center"
