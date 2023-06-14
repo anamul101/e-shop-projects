@@ -25,7 +25,7 @@ const AdminDashboardOrders = () => {
           </div>
 
           <div className="w-full min-h-[45vh] pt-5 rounded flex justify-center">
-            <div className="w-[97%] flex justify-center">
+            <div className="w-full flex justify-center">
             <div className="overflow-x-auto">
                         <table className="table w-full">
                             {/* head */}
