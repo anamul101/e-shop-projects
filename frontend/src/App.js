@@ -50,7 +50,7 @@ import axios from 'axios';
 import { server } from './server';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
-import { AdminDashboardOrders, AdminDashboardPage, AdminDashboardSellers, AdminDashboardUsers } from './routes/AdminRoutes';
+import { AdminDashboardOrders, AdminDashboardPage, AdminDashboardSellers, AdminDashboardUsers,AdminDashboardProducts } from './routes/AdminRoutes';
 import ProtectedAdminRoute from './routes/ProtectedAdminRoute';
 
 
@@ -240,6 +240,14 @@ function App() {
               </ProtectedAdminRoute>
             }
           />
+          <Route
+          path="/admin-products"
+          element={
+            <ProtectedAdminRoute>
+              <AdminDashboardProducts />
+            </ProtectedAdminRoute>
+          }
+        />
         </Routes>
         <Toaster
           position="top-center"
