@@ -50,7 +50,15 @@ import axios from 'axios';
 import { server } from './server';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from "@stripe/stripe-js";
-import { AdminDashboardOrders, AdminDashboardPage, AdminDashboardSellers, AdminDashboardUsers,AdminDashboardProducts, AdminDashboardEvents } from './routes/AdminRoutes';
+import { 
+        AdminDashboardOrders, 
+        AdminDashboardPage, 
+        AdminDashboardSellers, 
+        AdminDashboardUsers,
+        AdminDashboardProducts,
+        AdminDashboardEvents,
+        AdminDashboardWithdraw 
+      } from './routes/AdminRoutes';
 import ProtectedAdminRoute from './routes/ProtectedAdminRoute';
 
 
@@ -256,6 +264,14 @@ function App() {
           </ProtectedAdminRoute>
         }
       />
+      <Route
+      path="/admin-withdraw-request"
+      element={
+        <ProtectedAdminRoute>
+          <AdminDashboardWithdraw />
+        </ProtectedAdminRoute>
+      }
+    />
         </Routes>
         <Toaster
           position="top-center"
