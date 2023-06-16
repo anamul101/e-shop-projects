@@ -13,10 +13,8 @@ const WithdrawMoney = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const { seller } = useSelector((state) => state.seller);
-  const { orders } = useSelector((state) => state.order);
   const [paymentMethod, setPaymentMethod] = useState(false);
   const [withdrawAmount, setWithdrawAmount] = useState(50);
-  const [DeliveredOrder, setDeliveredOrder]=useState(null)
   const [bankInfo, setBankInfo] = useState({
     bankName: "",
     bankCountry: "",
@@ -28,8 +26,6 @@ const WithdrawMoney = () => {
 
   useEffect(() => {
     dispatch(getAllOrdersOfShop(seller._id));
-    const orderData=orders && orders.filter((item)=> item.status === "Delivered");
-        setDeliveredOrder(orderData)
   }, [dispatch]);
 
   const handleSubmit = async (e) => {
@@ -102,10 +98,7 @@ const WithdrawMoney = () => {
         });
     }
   }
-  const totalEarningWithoutTax = DeliveredOrder&&DeliveredOrder.reduce((acc,item)=>acc+item.totalPrice,0);
-    const serviceCharge = totalEarningWithoutTax*0.1;
-
-    const availableBalance = totalEarningWithoutTax-serviceCharge.toFixed(2) || 0;
+  const availableBalance = seller?.availableBalance.toFixed(2);
 
   return (
     <div className="w-full h-[90vh] p-8">

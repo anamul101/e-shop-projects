@@ -12,18 +12,13 @@ const DashboardHero = () => {
     const { orders } = useSelector((state) => state.order);
     const { seller } = useSelector((state) => state.seller);
     const { products } = useSelector((state) => state.products);
-    const [DeliveredOrder, setDeliveredOrder]=useState(null)
 
     useEffect(() => {
         dispatch(getAllOrdersOfShop(seller._id));
         dispatch(getAllProductsShop(seller._id));
-        const orderData=orders && orders.filter((item)=> item.status === "Delivered");
-        setDeliveredOrder(orderData)
     }, [dispatch]);
-    const totalEarningWithoutTax =DeliveredOrder ? DeliveredOrder.reduce((acc,item)=>acc+item.totalPrice,0):0;
-    const serviceCharge = totalEarningWithoutTax?totalEarningWithoutTax*0.1:0;
-
-    const availableBalance = totalEarningWithoutTax-serviceCharge.toFixed(2) || 0;
+    
+    const availableBalance = seller?.availableBalance.toFixed(2);
 
     return (
         <div className="w-full p-8">
