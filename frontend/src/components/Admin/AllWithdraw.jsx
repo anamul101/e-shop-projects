@@ -10,7 +10,7 @@ const AllWithdraw = () => {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState(false);
   const [withdrawData, setWithdrawData] = useState();
-  const [withdrawStatus,setWithdrawStatus] = useState('Processing');
+  const [withdrawStatus, setWithdrawStatus] = useState('Processing');
 
   useEffect(() => {
     axios
@@ -24,12 +24,12 @@ const AllWithdraw = () => {
         console.log(error.response.data.message);
       });
   }, []);
-    
+
   const handleSubmit = async () => {
     await axios
-      .put(`${server}/withdraw/update-withdraw-request/${withdrawData.id}`,{
+      .put(`${server}/withdraw/update-withdraw-request/${withdrawData.id}`, {
         sellerId: withdrawData.shopId,
-      },{withCredentials: true})
+      }, { withCredentials: true })
       .then((res) => {
         toast.success("Withdraw request updated successfully!");
         setData(res.data.withdraws);
@@ -39,33 +39,41 @@ const AllWithdraw = () => {
   return (
     <div className="w-full flex items-center pt-5 justify-center">
       <div className="w-[95%] bg-white">
-      <div className="overflow-x-auto">
-                        <table className="table w-full">
-                            {/* head */}
-                            <thead>
-                                <tr>
-                                    <th>Shopid</th>
-                                    <th>Name</th>
-                                    <th>amount</th>
-                                    <th>status</th>
-                                    <th>createdAt</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    data && data.map((item) =>
-                                        <tr>
-                                            <td>{item.seller._id}</td>
-                                            <td>{item.seller.name}</td>
-                                            <td>{item.amount}</td>
-                                            <td>{item.status}</td>
-                                            <td>{item.createdAt.slice(0, 10)}</td>
-                                        </tr>
-                                    )
-                                }
-                            </tbody>
-                    </table>
-            </div>
+        <div className="overflow-x-auto">
+          <table className="table w-full">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>Shopid</th>
+                <th>Name</th>
+                <th>amount</th>
+                <th>status</th>
+                <th>createdAt</th>
+                <th>PREQUEST</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                data && data.map((item) =>
+                  <tr>
+                    <td>{item.seller._id}</td>
+                    <td>{item.seller.name}</td>
+                    <td>{item.amount}</td>
+                    <td>{item.status}</td>
+                    <td>{item.createdAt.slice(0, 10)}</td>
+                    <td>
+                      <BsPencil
+                        size={20}
+                        className={`${item._id.status !== "Processing" ? 'hidden' : ''} mr-5 cursor-pointer`}
+                        onClick={() => setOpen(true) || setWithdrawData(item._id)}
+                      />
+                    </td>
+                  </tr>
+                )
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
       {open && (
         <div className="w-full fixed h-screen top-0 left-0 bg-[#00000031] z-[9999] flex items-center justify-center">
