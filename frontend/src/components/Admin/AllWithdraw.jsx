@@ -11,7 +11,7 @@ const AllWithdraw = () => {
   const [open, setOpen] = useState(false);
   const [withdrawData, setWithdrawData] = useState();
   const [withdrawStatus, setWithdrawStatus] = useState('Processing');
-
+console.log(withdrawData)
   useEffect(() => {
     axios
       .get(`${server}/withdraw/get-all-withdraw-request`, {
@@ -64,7 +64,6 @@ const AllWithdraw = () => {
                     <td>
                       <BsPencil
                         size={20}
-                        className={`${item._id.status !== "Processing" ? 'hidden' : ''} mr-5 cursor-pointer`}
                         onClick={() => setOpen(true) || setWithdrawData(item._id)}
                       />
                     </td>
