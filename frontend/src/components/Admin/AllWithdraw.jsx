@@ -64,6 +64,7 @@ const AllWithdraw = () => {
                     <td>
                       <BsPencil
                         size={20}
+                        className={`${item.status !== "Processing" ? 'hidden' : '' } mr-5 cursor-pointer`}
                         onClick={() => setOpen(true) || setWithdrawData(item)}
                       />
                     </td>
