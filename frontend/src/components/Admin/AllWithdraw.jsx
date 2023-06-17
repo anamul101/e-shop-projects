@@ -59,7 +59,7 @@ const AllWithdraw = () => {
                     <td>{item.seller._id}</td>
                     <td>{item.seller.name}</td>
                     <td>{item.amount}</td>
-                    <td>{item.status}</td>
+                    <td><p className="text-green-600">{item.status}</p></td>
                     <td>{item.createdAt.slice(0, 10)}</td>
                     <td>
                       <BsPencil
