@@ -27,7 +27,7 @@ const AllWithdraw = () => {
 
   const handleSubmit = async () => {
     await axios
-      .put(`${server}/withdraw/update-withdraw-request/${withdrawData.id}`, {
+      .put(`${server}/withdraw/update-withdraw-request/${withdrawData._id}`, {
         sellerId: withdrawData.shopId,
       }, { withCredentials: true })
       .then((res) => {
