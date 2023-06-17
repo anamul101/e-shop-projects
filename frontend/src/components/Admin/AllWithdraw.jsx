@@ -11,7 +11,7 @@ const AllWithdraw = () => {
   const [open, setOpen] = useState(false);
   const [withdrawData, setWithdrawData] = useState();
   const [withdrawStatus, setWithdrawStatus] = useState('Processing');
-console.log(withdrawData)
+
   useEffect(() => {
     axios
       .get(`${server}/withdraw/get-all-withdraw-request`, {
@@ -64,7 +64,7 @@ console.log(withdrawData)
                     <td>
                       <BsPencil
                         size={20}
-                        onClick={() => setOpen(true) || setWithdrawData(item._id)}
+                        onClick={() => setOpen(true) || setWithdrawData(item)}
                       />
                     </td>
                   </tr>
