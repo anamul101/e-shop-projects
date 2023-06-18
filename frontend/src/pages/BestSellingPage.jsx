@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Header from "../components/Layout/Header";
-import styles from "../styles/styles";
+import Loader from "../components/Layout/Loader";
 import ProductCard from "../components/Route/ProductCard";
-import { productData } from "../static/data";
+import styles from "../styles/styles";
+import Footer from "../components/Layout/Footer";
 
 const BestSellingPage = () => {
   const [data, setData] = useState([]);
-//   const {allProducts,isLoading} = useSelector((state) => state.products);
+  const {allProducts,isLoading} = useSelector((state) => state.products);
 
   useEffect(() => {
-   const d = productData && productData.sort((a,b) => b.total_sell - a.total_sell);
-//   const d = allProducts;
-   setData(d);
-  }, []);
+    const allProductsData = allProducts ? [...allProducts] : [];
+    const sortedData = allProductsData?.sort((a,b) => b.sold_out - a.sold_out); 
+    setData(sortedData);
+  }, [allProducts]);
 
   return (
    <>
+   {
+    isLoading ? (
+      <Loader />
+    ) : (
       <div>
       <Header activeHeading={2} />
       <br />
@@ -25,7 +31,10 @@ const BestSellingPage = () => {
           {data && data.map((i, index) => <ProductCard data={i} key={index} />)}
         </div>
       </div>
+      <Footer />
     </div>
+    )
+   }
    </>
   );
 };
