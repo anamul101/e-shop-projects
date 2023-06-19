@@ -210,6 +210,7 @@ const AllOrders = () => {
                                 <th>Status</th>
                                 <th>Items Qty</th>
                                 <th>Total</th>
+                                <th>details</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -1,8 +1,8 @@
 import React from "react";
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
-// import Lottie from "react-lottie";
-// import animationData from "../Assests/animations/107043-success.json";
+import { useLottie } from "lottie-react";
+import animationData from "../Assests/97660-payment-success.json";
 
 const OrderSuccessPage = () => {
   return (
@@ -15,19 +15,19 @@ const OrderSuccessPage = () => {
 };
 
 const Success = () => {
-//   const defaultOptions = {
-//     loop: false,
-//     autoplay: true,
-//     animationData: animationData,
-//     rendererSettings: {
-//       preserveAspectRatio: "xMidYMid slice",
-//     },
-//   };
+const defaultOptions = {
+  loop:true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+};
+const { View } = useLottie(defaultOptions);
   return (
     <div>
-      {/* <Lottie options={defaultOptions} width={300} height={300} /> */}
-      <h5 className="text-center mb-14 text-[25px] text-[#000000a1]">
-        Your order is successful 😍
+      <h5 className="text-center text-[25px] text-[#000000a1]">
+      <div options={defaultOptions} width={200} height={200}>{View}</div>
       </h5>
       <br />
       <br />
