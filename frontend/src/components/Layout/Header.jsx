@@ -209,7 +209,7 @@ const Header = ({ activeHeading }) => {
           <div>
             <BiMenuAltLeft
               size={40}
-              className="ml-4"
+              className="ml-4 text-[#fff]"
               onClick={() => setOpen(true)}
             />
           </div>
@@ -227,7 +227,7 @@ const Header = ({ activeHeading }) => {
               className="relative mr-[20px]"
               onClick={() => setOpenCart(true)}
             >
-              <AiOutlineShoppingCart size={30} />
+              <AiOutlineShoppingCart size={30} className="text-[#fff]"/>
               <span class="absolute right-0 top-0 rounded-full bg-[#189952] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px]  leading-tight text-center">
                 {cart && cart.length}
               </span>
