@@ -203,7 +203,7 @@ const Header = ({ activeHeading }) => {
       <div
         className={`${active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
           }
-      w-full h-[60px] bg-[#fff] z-50 top-0 left-0 shadow-sm 800px:hidden`}
+      w-full h-[60px] bg-[#054349] z-50 top-0 left-0 shadow-sm 800px:hidden`}
       >
         <div className="w-full flex items-center justify-between">
           <div>
