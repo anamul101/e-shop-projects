@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import EventCard from "../components/Events/EventCard";
 import Header from "../components/Layout/Header";
 import Loader from "../components/Layout/Loader";
-
+import ShowRoute from "../components/Sheard/ShowRoute";
 const EventsPage = () => {
   const { allEvents, isLoading } = useSelector((state) => state.events);
   return (
@@ -13,6 +13,7 @@ const EventsPage = () => {
       ) : (
         <div>
           <Header activeHeading={4} />
+          <ShowRoute title="All events" first="Events"></ShowRoute>
           {
             allEvents.length !== 0 && (
               <EventCard active={true} data={allEvents && allEvents[0]} />
