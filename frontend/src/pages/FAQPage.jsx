@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import styles from '../styles/styles';
 import Header from '../components/Layout/Header';
 import Footer from '../components/Layout/Footer';
+import ShowRoute from '../components/Sheard/ShowRoute';
 
 const FAQPage = () => {
     return (
         <div>
             <Header activeHeading={5} />
+            <ShowRoute title="All FAQ" first="faq"></ShowRoute>
             <Faq />
             <Footer />
         </div>
