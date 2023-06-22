@@ -26,7 +26,7 @@ const ShopLogin = () => {
       )
       .then((res) => {
         toast.success("Login Success!");
-        navigate("/dashbord");
+        navigate("/dashboard");
         window.location.reload(true); 
       })
       .catch((err) => {
