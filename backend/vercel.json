@@ -10,7 +10,15 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/server.js"
+            "dest": "/server.js",
+            "methods": [
+                "GET",
+                "POST",
+                "PATCH",
+                "PUT",
+                "DELETE",
+                "OPTIONS"
+            ]
         }
     ]
 }
