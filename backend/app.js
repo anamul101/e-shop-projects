@@ -14,7 +14,7 @@ app.use(cors({
   credentials:true,
 }));
 app.use("/", express.static(path.join(_dirname,"./uploads")));
-app.use("/test", (req, res) => {
+app.use("/", (req, res) => {
   res.send("Hello world!");
 });
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
