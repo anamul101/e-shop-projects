@@ -7,25 +7,25 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const path =require("path");
 
-app.use(express.json());
-app.use(cookieParser());
 app.use(cors({
   origin:"https://e-shop-projects-dz3s.vercel.app/",
   credentials:true,
 }));
-app.use("/", express.static(path.join(_dirname,"./uploads")));
+
+// config
+if (process.env.NODE_ENV !== "PRODUCTION") {
+  require("dotenv").config({
+    path: "config/.env",
+  });
+}
+app.use(express.json());
+app.use(cookieParser());
+app.use("/", express.static("./uploads"));
 app.use("/test", (req, res) => {
   res.send("Hello world!");
 });
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
-
-// config
-if (process.env.NODE_ENV !== "PRODUCTION") {
-    require("dotenv").config({
-      path: "config/.env",
-    });
-  }
 
 // import routes
 const user = require("./controller/user");
